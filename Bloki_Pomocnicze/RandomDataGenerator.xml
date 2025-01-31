@@ -1,0 +1,1427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V19" />
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="RandInt_1" Datatype="Int" />
+    <Member Name="RandInt_2" Datatype="Int" />
+    <Member Name="RandInt_3" Datatype="Int" />
+    <Member Name="RandInt_4" Datatype="Int" />
+    <Member Name="RandInt_5" Datatype="Int" />
+    <Member Name="RandReal_1" Datatype="Real" />
+    <Member Name="RandReal_2" Datatype="Real" />
+    <Member Name="RandReal_3" Datatype="Real" />
+    <Member Name="RandReal_4" Datatype="Real" />
+    <Member Name="RandReal_5" Datatype="Real" />
+  </Section>
+  <Section Name="Temp">
+    <Member Name="Err" Datatype="Array[0..9] of Bool" />
+    <Member Name="StatId" Datatype="Array[0..9] of UInt" />
+    <Member Name="Stat" Datatype="Array[0..9] of Word" />
+    <Member Name="i" Datatype="USInt" />
+  </Section>
+  <Section Name="Constant" />
+</Sections></Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>RandomDataGenerator</Name>
+      <Namespace />
+      <Number>2</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>pl-PL</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="4" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v4">
+  <LineComment UId="21">
+    <Text UId="22"> Generowanie losowych danych</Text>
+  </LineComment>
+  <NewLine UId="23" />
+  <Access Scope="LocalVariable" UId="24">
+    <Symbol UId="25">
+      <Component Name="RandInt_1" UId="26" />
+    </Symbol>
+  </Access>
+  <Blank UId="27" />
+  <Token Text=":=" UId="28" />
+  <Blank UId="29" />
+  <Access Scope="Call" UId="30">
+    <CallInfo UId="31" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="33">
+        <Component Name="LGF_RandomInt" UId="32" />
+      </Instance>
+      <Token Text="(" UId="34" />
+      <Parameter Name="minValue" UId="35">
+        <Token Text=":=" UId="36" />
+        <Access Scope="LiteralConstant" UId="37">
+          <Constant UId="38">
+            <ConstantValue UId="40">0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="41" />
+      <Blank UId="42" />
+      <Parameter Name="maxValue" UId="43">
+        <Token Text=":=" UId="44" />
+        <Access Scope="LiteralConstant" UId="45">
+          <Constant UId="46">
+            <ConstantValue UId="48">1000</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="49" />
+      <Blank UId="50" />
+      <Parameter Name="error" UId="51">
+        <Token Text="=&gt;" UId="52" />
+        <Access Scope="LocalVariable" UId="53">
+          <Symbol UId="54">
+            <Component Name="Err" UId="55">
+              <Token Text="[" UId="56" />
+              <Access Scope="LiteralConstant" UId="57">
+                <Constant UId="58">
+                  <ConstantValue UId="60">0</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="61" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="62" />
+      <Blank UId="63" />
+      <Parameter Name="statusID" UId="64">
+        <Token Text="=&gt;" UId="65" />
+        <Access Scope="LocalVariable" UId="66">
+          <Symbol UId="67">
+            <Component Name="StatId" UId="68">
+              <Token Text="[" UId="69" />
+              <Access Scope="LiteralConstant" UId="70">
+                <Constant UId="71">
+                  <ConstantValue UId="73">0</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="74" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="75" />
+      <Blank UId="76" />
+      <Parameter Name="status" UId="77">
+        <Token Text="=&gt;" UId="78" />
+        <Access Scope="LocalVariable" UId="79">
+          <Symbol UId="80">
+            <Component Name="Stat" UId="81">
+              <Token Text="[" UId="82" />
+              <Access Scope="LiteralConstant" UId="83">
+                <Constant UId="84">
+                  <ConstantValue UId="86">0</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="87" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="89" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="90" />
+  <NewLine UId="91" />
+  <Access Scope="LocalVariable" UId="92">
+    <Symbol UId="93">
+      <Component Name="RandInt_2" UId="94" />
+    </Symbol>
+  </Access>
+  <Blank UId="95" />
+  <Token Text=":=" UId="96" />
+  <Blank UId="97" />
+  <Access Scope="Call" UId="98">
+    <CallInfo UId="99" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="101">
+        <Component Name="LGF_RandomInt" UId="100" />
+      </Instance>
+      <Token Text="(" UId="102" />
+      <Parameter Name="minValue" UId="103">
+        <Blank UId="104" />
+        <Token Text=":=" UId="105" />
+        <Blank UId="106" />
+        <Access Scope="LiteralConstant" UId="107">
+          <Constant UId="108">
+            <ConstantValue UId="110">0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="111" />
+      <Blank UId="112" />
+      <Parameter Name="maxValue" UId="113">
+        <Blank UId="114" />
+        <Token Text=":=" UId="115" />
+        <Blank UId="116" />
+        <Access Scope="LiteralConstant" UId="117">
+          <Constant UId="118">
+            <ConstantValue UId="120">20</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="121" />
+      <Blank UId="122" />
+      <Parameter Name="error" UId="123">
+        <Blank UId="124" />
+        <Token Text="=&gt;" UId="125" />
+        <Blank UId="126" />
+        <Access Scope="LocalVariable" UId="127">
+          <Symbol UId="128">
+            <Component Name="Err" UId="129">
+              <Token Text="[" UId="130" />
+              <Access Scope="LiteralConstant" UId="131">
+                <Constant UId="132">
+                  <ConstantValue UId="134">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="135" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="136" />
+      <Blank UId="137" />
+      <Parameter Name="statusID" UId="138">
+        <Blank UId="139" />
+        <Token Text="=&gt;" UId="140" />
+        <Blank UId="141" />
+        <Access Scope="LocalVariable" UId="142">
+          <Symbol UId="143">
+            <Component Name="StatId" UId="144">
+              <Token Text="[" UId="145" />
+              <Access Scope="LiteralConstant" UId="146">
+                <Constant UId="147">
+                  <ConstantValue UId="149">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="150" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="151" />
+      <Blank UId="152" />
+      <Parameter Name="status" UId="153">
+        <Blank UId="154" />
+        <Token Text="=&gt;" UId="155" />
+        <Blank UId="156" />
+        <Access Scope="LocalVariable" UId="157">
+          <Symbol UId="158">
+            <Component Name="Stat" UId="159">
+              <Token Text="[" UId="160" />
+              <Access Scope="LiteralConstant" UId="161">
+                <Constant UId="162">
+                  <ConstantValue UId="164">1</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="165" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="167" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="168" />
+  <NewLine UId="169" />
+  <Access Scope="LocalVariable" UId="170">
+    <Symbol UId="171">
+      <Component Name="RandInt_3" UId="172" />
+    </Symbol>
+  </Access>
+  <Blank UId="173" />
+  <Token Text=":=" UId="174" />
+  <Blank UId="175" />
+  <Access Scope="Call" UId="176">
+    <CallInfo UId="177" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="179">
+        <Component Name="LGF_RandomInt" UId="178" />
+      </Instance>
+      <Token Text="(" UId="180" />
+      <Parameter Name="minValue" UId="181">
+        <Blank UId="182" />
+        <Token Text=":=" UId="183" />
+        <Blank UId="184" />
+        <Access Scope="LiteralConstant" UId="185">
+          <Constant UId="186">
+            <ConstantValue UId="188">0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="189" />
+      <Blank UId="190" />
+      <Parameter Name="maxValue" UId="191">
+        <Blank UId="192" />
+        <Token Text=":=" UId="193" />
+        <Blank UId="194" />
+        <Access Scope="LiteralConstant" UId="195">
+          <Constant UId="196">
+            <ConstantValue UId="198">30</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="199" />
+      <Blank UId="200" />
+      <Parameter Name="error" UId="201">
+        <Blank UId="202" />
+        <Token Text="=&gt;" UId="203" />
+        <Blank UId="204" />
+        <Access Scope="LocalVariable" UId="205">
+          <Symbol UId="206">
+            <Component Name="Err" UId="207">
+              <Token Text="[" UId="208" />
+              <Access Scope="LiteralConstant" UId="209">
+                <Constant UId="210">
+                  <ConstantValue UId="212">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="213" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="214" />
+      <Blank UId="215" />
+      <Parameter Name="statusID" UId="216">
+        <Blank UId="217" />
+        <Token Text="=&gt;" UId="218" />
+        <Blank UId="219" />
+        <Access Scope="LocalVariable" UId="220">
+          <Symbol UId="221">
+            <Component Name="StatId" UId="222">
+              <Token Text="[" UId="223" />
+              <Access Scope="LiteralConstant" UId="224">
+                <Constant UId="225">
+                  <ConstantValue UId="227">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="228" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="229" />
+      <Blank UId="230" />
+      <Parameter Name="status" UId="231">
+        <Blank UId="232" />
+        <Token Text="=&gt;" UId="233" />
+        <Blank UId="234" />
+        <Access Scope="LocalVariable" UId="235">
+          <Symbol UId="236">
+            <Component Name="Stat" UId="237">
+              <Token Text="[" UId="238" />
+              <Access Scope="LiteralConstant" UId="239">
+                <Constant UId="240">
+                  <ConstantValue UId="242">2</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="243" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="245" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="246" />
+  <NewLine UId="247" />
+  <Access Scope="LocalVariable" UId="248">
+    <Symbol UId="249">
+      <Component Name="RandInt_4" UId="250" />
+    </Symbol>
+  </Access>
+  <Blank UId="251" />
+  <Token Text=":=" UId="252" />
+  <Blank UId="253" />
+  <Access Scope="Call" UId="254">
+    <CallInfo UId="255" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="257">
+        <Component Name="LGF_RandomInt" UId="256" />
+      </Instance>
+      <Token Text="(" UId="258" />
+      <Parameter Name="minValue" UId="259">
+        <Blank UId="260" />
+        <Token Text=":=" UId="261" />
+        <Blank UId="262" />
+        <Access Scope="LiteralConstant" UId="263">
+          <Constant UId="264">
+            <ConstantValue UId="266">-500</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="267" />
+      <Blank UId="268" />
+      <Parameter Name="maxValue" UId="269">
+        <Blank UId="270" />
+        <Token Text=":=" UId="271" />
+        <Blank UId="272" />
+        <Access Scope="LiteralConstant" UId="273">
+          <Constant UId="274">
+            <ConstantValue UId="276">500</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="277" />
+      <Blank UId="278" />
+      <Parameter Name="error" UId="279">
+        <Blank UId="280" />
+        <Token Text="=&gt;" UId="281" />
+        <Blank UId="282" />
+        <Access Scope="LocalVariable" UId="283">
+          <Symbol UId="284">
+            <Component Name="Err" UId="285">
+              <Token Text="[" UId="286" />
+              <Access Scope="LiteralConstant" UId="287">
+                <Constant UId="288">
+                  <ConstantValue UId="290">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="291" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="292" />
+      <Blank UId="293" />
+      <Parameter Name="statusID" UId="294">
+        <Blank UId="295" />
+        <Token Text="=&gt;" UId="296" />
+        <Blank UId="297" />
+        <Access Scope="LocalVariable" UId="298">
+          <Symbol UId="299">
+            <Component Name="StatId" UId="300">
+              <Token Text="[" UId="301" />
+              <Access Scope="LiteralConstant" UId="302">
+                <Constant UId="303">
+                  <ConstantValue UId="305">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="306" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="307" />
+      <Blank UId="308" />
+      <Parameter Name="status" UId="309">
+        <Blank UId="310" />
+        <Token Text="=&gt;" UId="311" />
+        <Blank UId="312" />
+        <Access Scope="LocalVariable" UId="313">
+          <Symbol UId="314">
+            <Component Name="Stat" UId="315">
+              <Token Text="[" UId="316" />
+              <Access Scope="LiteralConstant" UId="317">
+                <Constant UId="318">
+                  <ConstantValue UId="320">3</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="321" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="323" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="324" />
+  <NewLine UId="325" />
+  <Access Scope="LocalVariable" UId="326">
+    <Symbol UId="327">
+      <Component Name="RandInt_5" UId="328" />
+    </Symbol>
+  </Access>
+  <Blank UId="329" />
+  <Token Text=":=" UId="330" />
+  <Blank UId="331" />
+  <Access Scope="Call" UId="332">
+    <CallInfo UId="333" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="335">
+        <Component Name="LGF_RandomInt" UId="334" />
+      </Instance>
+      <Token Text="(" UId="336" />
+      <Parameter Name="minValue" UId="337">
+        <Blank UId="338" />
+        <Token Text=":=" UId="339" />
+        <Blank UId="340" />
+        <Access Scope="LiteralConstant" UId="341">
+          <Constant UId="342">
+            <ConstantValue UId="344">1</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="345" />
+      <Blank UId="346" />
+      <Parameter Name="maxValue" UId="347">
+        <Blank UId="348" />
+        <Token Text=":=" UId="349" />
+        <Blank UId="350" />
+        <Access Scope="LiteralConstant" UId="351">
+          <Constant UId="352">
+            <ConstantValue UId="354">8</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="355" />
+      <Blank UId="356" />
+      <Parameter Name="error" UId="357">
+        <Blank UId="358" />
+        <Token Text="=&gt;" UId="359" />
+        <Blank UId="360" />
+        <Access Scope="LocalVariable" UId="361">
+          <Symbol UId="362">
+            <Component Name="Err" UId="363">
+              <Token Text="[" UId="364" />
+              <Access Scope="LiteralConstant" UId="365">
+                <Constant UId="366">
+                  <ConstantValue UId="368">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="369" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="370" />
+      <Blank UId="371" />
+      <Parameter Name="statusID" UId="372">
+        <Blank UId="373" />
+        <Token Text="=&gt;" UId="374" />
+        <Blank UId="375" />
+        <Access Scope="LocalVariable" UId="376">
+          <Symbol UId="377">
+            <Component Name="StatId" UId="378">
+              <Token Text="[" UId="379" />
+              <Access Scope="LiteralConstant" UId="380">
+                <Constant UId="381">
+                  <ConstantValue UId="383">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="384" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="385" />
+      <Blank UId="386" />
+      <Parameter Name="status" UId="387">
+        <Blank UId="388" />
+        <Token Text="=&gt;" UId="389" />
+        <Blank UId="390" />
+        <Access Scope="LocalVariable" UId="391">
+          <Symbol UId="392">
+            <Component Name="Stat" UId="393">
+              <Token Text="[" UId="394" />
+              <Access Scope="LiteralConstant" UId="395">
+                <Constant UId="396">
+                  <ConstantValue UId="398">4</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="399" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="401" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="402" />
+  <NewLine UId="403" />
+  <Access Scope="LocalVariable" UId="404">
+    <Symbol UId="405">
+      <Component Name="RandReal_1" UId="406" />
+    </Symbol>
+  </Access>
+  <Blank UId="407" />
+  <Token Text=":=" UId="408" />
+  <Blank UId="409" />
+  <Access Scope="Call" UId="410">
+    <CallInfo UId="411" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="413">
+        <Component Name="LGF_RandomReal" UId="412" />
+      </Instance>
+      <Token Text="(" UId="414" />
+      <Parameter Name="minValue" UId="415">
+        <Blank UId="416" />
+        <Token Text=":=" UId="417" />
+        <Blank UId="418" />
+        <Access Scope="LiteralConstant" UId="419">
+          <Constant UId="420">
+            <ConstantValue UId="422">0.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="423" />
+      <Blank UId="424" />
+      <Parameter Name="maxValue" UId="425">
+        <Blank UId="426" />
+        <Token Text=":=" UId="427" />
+        <Blank UId="428" />
+        <Access Scope="LiteralConstant" UId="429">
+          <Constant UId="430">
+            <ConstantValue UId="432">1000.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="433" />
+      <Blank UId="434" />
+      <Parameter Name="error" UId="435">
+        <Blank UId="436" />
+        <Token Text="=&gt;" UId="437" />
+        <Blank UId="438" />
+        <Access Scope="LocalVariable" UId="439">
+          <Symbol UId="440">
+            <Component Name="Err" UId="441">
+              <Token Text="[" UId="442" />
+              <Access Scope="LiteralConstant" UId="443">
+                <Constant UId="444">
+                  <ConstantValue UId="446">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="447" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="448" />
+      <Blank UId="449" />
+      <Parameter Name="statusID" UId="450">
+        <Blank UId="451" />
+        <Token Text="=&gt;" UId="452" />
+        <Blank UId="453" />
+        <Access Scope="LocalVariable" UId="454">
+          <Symbol UId="455">
+            <Component Name="StatId" UId="456">
+              <Token Text="[" UId="457" />
+              <Access Scope="LiteralConstant" UId="458">
+                <Constant UId="459">
+                  <ConstantValue UId="461">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="462" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="463" />
+      <Blank UId="464" />
+      <Parameter Name="status" UId="465">
+        <Blank UId="466" />
+        <Token Text="=&gt;" UId="467" />
+        <Blank UId="468" />
+        <Access Scope="LocalVariable" UId="469">
+          <Symbol UId="470">
+            <Component Name="Stat" UId="471">
+              <Token Text="[" UId="472" />
+              <Access Scope="LiteralConstant" UId="473">
+                <Constant UId="474">
+                  <ConstantValue UId="476">5</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="477" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="479" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="480" />
+  <NewLine UId="481" />
+  <Access Scope="LocalVariable" UId="482">
+    <Symbol UId="483">
+      <Component Name="RandReal_2" UId="484" />
+    </Symbol>
+  </Access>
+  <Blank UId="485" />
+  <Token Text=":=" UId="486" />
+  <Blank UId="487" />
+  <Access Scope="Call" UId="488">
+    <CallInfo UId="489" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="491">
+        <Component Name="LGF_RandomReal" UId="490" />
+      </Instance>
+      <Token Text="(" UId="492" />
+      <Parameter Name="minValue" UId="493">
+        <Blank UId="494" />
+        <Token Text=":=" UId="495" />
+        <Blank UId="496" />
+        <Access Scope="LiteralConstant" UId="497">
+          <Constant UId="498">
+            <ConstantValue UId="500">60.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="501" />
+      <Blank UId="502" />
+      <Parameter Name="maxValue" UId="503">
+        <Blank UId="504" />
+        <Token Text=":=" UId="505" />
+        <Blank UId="506" />
+        <Access Scope="LiteralConstant" UId="507">
+          <Constant UId="508">
+            <ConstantValue UId="510">100.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="511" />
+      <Blank UId="512" />
+      <Parameter Name="error" UId="513">
+        <Blank UId="514" />
+        <Token Text="=&gt;" UId="515" />
+        <Blank UId="516" />
+        <Access Scope="LocalVariable" UId="517">
+          <Symbol UId="518">
+            <Component Name="Err" UId="519">
+              <Token Text="[" UId="520" />
+              <Access Scope="LiteralConstant" UId="521">
+                <Constant UId="522">
+                  <ConstantValue UId="524">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="525" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="526" />
+      <Blank UId="527" />
+      <Parameter Name="statusID" UId="528">
+        <Blank UId="529" />
+        <Token Text="=&gt;" UId="530" />
+        <Blank UId="531" />
+        <Access Scope="LocalVariable" UId="532">
+          <Symbol UId="533">
+            <Component Name="StatId" UId="534">
+              <Token Text="[" UId="535" />
+              <Access Scope="LiteralConstant" UId="536">
+                <Constant UId="537">
+                  <ConstantValue UId="539">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="540" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="541" />
+      <Blank UId="542" />
+      <Parameter Name="status" UId="543">
+        <Blank UId="544" />
+        <Token Text="=&gt;" UId="545" />
+        <Blank UId="546" />
+        <Access Scope="LocalVariable" UId="547">
+          <Symbol UId="548">
+            <Component Name="Stat" UId="549">
+              <Token Text="[" UId="550" />
+              <Access Scope="LiteralConstant" UId="551">
+                <Constant UId="552">
+                  <ConstantValue UId="554">6</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="555" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="557" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="558" />
+  <NewLine UId="559" />
+  <Access Scope="LocalVariable" UId="560">
+    <Symbol UId="561">
+      <Component Name="RandReal_3" UId="562" />
+    </Symbol>
+  </Access>
+  <Blank UId="563" />
+  <Token Text=":=" UId="564" />
+  <Blank UId="565" />
+  <Access Scope="Call" UId="566">
+    <CallInfo UId="567" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="569">
+        <Component Name="LGF_RandomReal" UId="568" />
+      </Instance>
+      <Token Text="(" UId="570" />
+      <Parameter Name="minValue" UId="571">
+        <Blank UId="572" />
+        <Token Text=":=" UId="573" />
+        <Blank UId="574" />
+        <Access Scope="LiteralConstant" UId="575">
+          <Constant UId="576">
+            <ConstantValue UId="578">-30.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="579" />
+      <Blank UId="580" />
+      <Parameter Name="maxValue" UId="581">
+        <Blank UId="582" />
+        <Token Text=":=" UId="583" />
+        <Blank UId="584" />
+        <Access Scope="LiteralConstant" UId="585">
+          <Constant UId="586">
+            <ConstantValue UId="588">30.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="589" />
+      <Blank UId="590" />
+      <Parameter Name="error" UId="591">
+        <Blank UId="592" />
+        <Token Text="=&gt;" UId="593" />
+        <Blank UId="594" />
+        <Access Scope="LocalVariable" UId="595">
+          <Symbol UId="596">
+            <Component Name="Err" UId="597">
+              <Token Text="[" UId="598" />
+              <Access Scope="LiteralConstant" UId="599">
+                <Constant UId="600">
+                  <ConstantValue UId="602">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="603" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="604" />
+      <Blank UId="605" />
+      <Parameter Name="statusID" UId="606">
+        <Blank UId="607" />
+        <Token Text="=&gt;" UId="608" />
+        <Blank UId="609" />
+        <Access Scope="LocalVariable" UId="610">
+          <Symbol UId="611">
+            <Component Name="StatId" UId="612">
+              <Token Text="[" UId="613" />
+              <Access Scope="LiteralConstant" UId="614">
+                <Constant UId="615">
+                  <ConstantValue UId="617">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="618" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="619" />
+      <Blank UId="620" />
+      <Parameter Name="status" UId="621">
+        <Blank UId="622" />
+        <Token Text="=&gt;" UId="623" />
+        <Blank UId="624" />
+        <Access Scope="LocalVariable" UId="625">
+          <Symbol UId="626">
+            <Component Name="Stat" UId="627">
+              <Token Text="[" UId="628" />
+              <Access Scope="LiteralConstant" UId="629">
+                <Constant UId="630">
+                  <ConstantValue UId="632">7</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="633" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="635" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="636" />
+  <NewLine UId="637" />
+  <Access Scope="LocalVariable" UId="638">
+    <Symbol UId="639">
+      <Component Name="RandReal_4" UId="640" />
+    </Symbol>
+  </Access>
+  <Blank UId="641" />
+  <Token Text=":=" UId="642" />
+  <Blank UId="643" />
+  <Access Scope="Call" UId="644">
+    <CallInfo UId="645" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="647">
+        <Component Name="LGF_RandomReal" UId="646" />
+      </Instance>
+      <Token Text="(" UId="648" />
+      <Parameter Name="minValue" UId="649">
+        <Blank UId="650" />
+        <Token Text=":=" UId="651" />
+        <Blank UId="652" />
+        <Access Scope="LiteralConstant" UId="653">
+          <Constant UId="654">
+            <ConstantValue UId="656">0.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="657" />
+      <Blank UId="658" />
+      <Parameter Name="maxValue" UId="659">
+        <Blank UId="660" />
+        <Token Text=":=" UId="661" />
+        <Blank UId="662" />
+        <Access Scope="LiteralConstant" UId="663">
+          <Constant UId="664">
+            <ConstantValue UId="666">50.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="667" />
+      <Blank UId="668" />
+      <Parameter Name="error" UId="669">
+        <Blank UId="670" />
+        <Token Text="=&gt;" UId="671" />
+        <Blank UId="672" />
+        <Access Scope="LocalVariable" UId="673">
+          <Symbol UId="674">
+            <Component Name="Err" UId="675">
+              <Token Text="[" UId="676" />
+              <Access Scope="LiteralConstant" UId="677">
+                <Constant UId="678">
+                  <ConstantValue UId="680">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="681" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="682" />
+      <Blank UId="683" />
+      <Parameter Name="statusID" UId="684">
+        <Blank UId="685" />
+        <Token Text="=&gt;" UId="686" />
+        <Blank UId="687" />
+        <Access Scope="LocalVariable" UId="688">
+          <Symbol UId="689">
+            <Component Name="StatId" UId="690">
+              <Token Text="[" UId="691" />
+              <Access Scope="LiteralConstant" UId="692">
+                <Constant UId="693">
+                  <ConstantValue UId="695">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="696" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="697" />
+      <Blank UId="698" />
+      <Parameter Name="status" UId="699">
+        <Blank UId="700" />
+        <Token Text="=&gt;" UId="701" />
+        <Blank UId="702" />
+        <Access Scope="LocalVariable" UId="703">
+          <Symbol UId="704">
+            <Component Name="Stat" UId="705">
+              <Token Text="[" UId="706" />
+              <Access Scope="LiteralConstant" UId="707">
+                <Constant UId="708">
+                  <ConstantValue UId="710">8</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="711" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="713" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="714" />
+  <NewLine UId="715" />
+  <Access Scope="LocalVariable" UId="716">
+    <Symbol UId="717">
+      <Component Name="RandReal_5" UId="718" />
+    </Symbol>
+  </Access>
+  <Blank UId="719" />
+  <Token Text=":=" UId="720" />
+  <Blank UId="721" />
+  <Access Scope="Call" UId="722">
+    <CallInfo UId="723" BlockType="FC">
+      <Instance Scope="GlobalVariable" UId="725">
+        <Component Name="LGF_RandomReal" UId="724" />
+      </Instance>
+      <Token Text="(" UId="726" />
+      <Parameter Name="minValue" UId="727">
+        <Blank UId="728" />
+        <Token Text=":=" UId="729" />
+        <Blank UId="730" />
+        <Access Scope="LiteralConstant" UId="731">
+          <Constant UId="732">
+            <ConstantValue UId="734">0.0</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="735" />
+      <Blank UId="736" />
+      <Parameter Name="maxValue" UId="737">
+        <Blank UId="738" />
+        <Token Text=":=" UId="739" />
+        <Blank UId="740" />
+        <Access Scope="LiteralConstant" UId="741">
+          <Constant UId="742">
+            <ConstantValue UId="744">6.28</ConstantValue>
+          </Constant>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="745" />
+      <Blank UId="746" />
+      <Parameter Name="error" UId="747">
+        <Blank UId="748" />
+        <Token Text="=&gt;" UId="749" />
+        <Blank UId="750" />
+        <Access Scope="LocalVariable" UId="751">
+          <Symbol UId="752">
+            <Component Name="Err" UId="753">
+              <Token Text="[" UId="754" />
+              <Access Scope="LiteralConstant" UId="755">
+                <Constant UId="756">
+                  <ConstantValue UId="758">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="759" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="760" />
+      <Blank UId="761" />
+      <Parameter Name="statusID" UId="762">
+        <Blank UId="763" />
+        <Token Text="=&gt;" UId="764" />
+        <Blank UId="765" />
+        <Access Scope="LocalVariable" UId="766">
+          <Symbol UId="767">
+            <Component Name="StatId" UId="768">
+              <Token Text="[" UId="769" />
+              <Access Scope="LiteralConstant" UId="770">
+                <Constant UId="771">
+                  <ConstantValue UId="773">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="774" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text="," UId="775" />
+      <Blank UId="776" />
+      <Parameter Name="status" UId="777">
+        <Blank UId="778" />
+        <Token Text="=&gt;" UId="779" />
+        <Blank UId="780" />
+        <Access Scope="LocalVariable" UId="781">
+          <Symbol UId="782">
+            <Component Name="Stat" UId="783">
+              <Token Text="[" UId="784" />
+              <Access Scope="LiteralConstant" UId="785">
+                <Constant UId="786">
+                  <ConstantValue UId="788">9</ConstantValue>
+                </Constant>
+              </Access>
+              <Token Text="]" UId="789" />
+            </Component>
+          </Symbol>
+        </Access>
+      </Parameter>
+      <Token Text=")" UId="791" />
+    </CallInfo>
+  </Access>
+  <Token Text=";" UId="792" />
+  <NewLine Num="2" UId="793" />
+  <LineComment UId="794">
+    <Text UId="795"> Przepisanie do bloków _Interface wykorzystywanych w ćwiczeniach</Text>
+  </LineComment>
+  <NewLine UId="796" />
+  <Token Text="FOR" UId="797" />
+  <Blank UId="798" />
+  <Access Scope="LocalVariable" UId="799">
+    <Symbol UId="800">
+      <Component Name="i" UId="801" />
+    </Symbol>
+  </Access>
+  <Blank UId="802" />
+  <Token Text=":=" UId="803" />
+  <Blank UId="804" />
+  <Access Scope="LiteralConstant" UId="805">
+    <Constant UId="806">
+      <ConstantValue UId="808">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="809" />
+  <Token Text="TO" UId="810" />
+  <Blank UId="811" />
+  <Access Scope="LiteralConstant" UId="812">
+    <Constant UId="813">
+      <ConstantValue UId="815">4</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="816" />
+  <Token Text="DO" UId="817" />
+  <NewLine UId="818" />
+  <Blank Num="4" UId="819" />
+  <LineComment UId="820">
+    <Text UId="821"> Dla OPC</Text>
+  </LineComment>
+  <NewLine UId="822" />
+  <Blank Num="4" UId="823" />
+  <Access Scope="GlobalVariable" UId="824">
+    <Symbol UId="825">
+      <Component Name="OPC_Interface" UId="826">
+        <BooleanAttribute Name="HasQuotes" UId="827">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="828" />
+      <Component Name="NumericalValues" UId="829">
+        <Token Text="[" UId="830" />
+        <Access Scope="LocalVariable" UId="831">
+          <Symbol UId="832">
+            <Component Name="i" UId="833" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="834" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="835" />
+  <Token Text=":=" UId="836" />
+  <Blank UId="837" />
+  <Access Scope="LocalVariable" UId="838">
+    <Symbol UId="839">
+      <Component Name="RandInt_1" UId="840" />
+    </Symbol>
+  </Access>
+  <Blank UId="841" />
+  <Token Text="*" UId="842" />
+  <Blank UId="843" />
+  <Token Text="(" UId="844" />
+  <Access Scope="LocalVariable" UId="845">
+    <Symbol UId="846">
+      <Component Name="i" UId="847" />
+    </Symbol>
+  </Access>
+  <Blank UId="848" />
+  <Token Text="+" UId="849" />
+  <Blank UId="850" />
+  <Access Scope="LiteralConstant" UId="851">
+    <Constant UId="852">
+      <ConstantValue UId="854">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=")" UId="855" />
+  <Token Text=";" UId="856" />
+  <NewLine UId="857" />
+  <Blank Num="4" UId="858" />
+  <Access Scope="GlobalVariable" UId="859">
+    <Symbol UId="860">
+      <Component Name="OPC_Interface" UId="861">
+        <BooleanAttribute Name="HasQuotes" UId="862">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="863" />
+      <Component Name="FloatingPointValues" UId="864">
+        <Token Text="[" UId="865" />
+        <Access Scope="LocalVariable" UId="866">
+          <Symbol UId="867">
+            <Component Name="i" UId="868" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="869" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="870" />
+  <Token Text=":=" UId="871" />
+  <Blank UId="872" />
+  <Access Scope="LocalVariable" UId="873">
+    <Symbol UId="874">
+      <Component Name="RandReal_1" UId="875" />
+    </Symbol>
+  </Access>
+  <Blank UId="876" />
+  <Token Text="/" UId="877" />
+  <Blank UId="878" />
+  <Token Text="(" UId="879" />
+  <Access Scope="LocalVariable" UId="880">
+    <Symbol UId="881">
+      <Component Name="i" UId="882" />
+    </Symbol>
+  </Access>
+  <Blank UId="883" />
+  <Token Text="+" UId="884" />
+  <Blank UId="885" />
+  <Access Scope="LiteralConstant" UId="886">
+    <Constant UId="887">
+      <ConstantValue UId="889">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=")" UId="890" />
+  <Token Text=";" UId="891" />
+  <NewLine UId="892" />
+  <Blank Num="4" UId="893" />
+  <Access Scope="GlobalVariable" UId="894">
+    <Symbol UId="895">
+      <Component Name="OPC_Interface" UId="896">
+        <BooleanAttribute Name="HasQuotes" UId="897">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="898" />
+      <Component Name="Booleans" UId="899">
+        <Token Text="[" UId="900" />
+        <Access Scope="LocalVariable" UId="901">
+          <Symbol UId="902">
+            <Component Name="i" UId="903" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="904" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="905" />
+  <Token Text=":=" UId="906" />
+  <Blank UId="907" />
+  <Access Scope="GlobalVariable" UId="908">
+    <Symbol UId="909">
+      <Component Name="OPC_Interface" UId="910">
+        <BooleanAttribute Name="HasQuotes" UId="911">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="912" />
+      <Component Name="NumericalValues" UId="913">
+        <Token Text="[" UId="914" />
+        <Access Scope="LocalVariable" UId="915">
+          <Symbol UId="916">
+            <Component Name="i" UId="917" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="918" />
+      </Component>
+      <Token Text="." UId="919" />
+      <Token Text="%X7" UId="920" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="921" />
+  <NewLine UId="922" />
+  <Blank Num="4" UId="923" />
+  <LineComment UId="924">
+    <Text UId="925"> Dla S7</Text>
+  </LineComment>
+  <NewLine UId="926" />
+  <Blank Num="4" UId="927" />
+  <Access Scope="GlobalVariable" UId="928">
+    <Symbol UId="929">
+      <Component Name="S7_Interface" UId="930">
+        <BooleanAttribute Name="HasQuotes" UId="931">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="932" />
+      <Component Name="NumericalValues" UId="933">
+        <Token Text="[" UId="934" />
+        <Access Scope="LocalVariable" UId="935">
+          <Symbol UId="936">
+            <Component Name="i" UId="937" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="938" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="939" />
+  <Token Text=":=" UId="940" />
+  <Blank UId="941" />
+  <Access Scope="LiteralConstant" UId="942">
+    <Constant UId="943">
+      <ConstantValue UId="945">100</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank UId="946" />
+  <Token Text="-" UId="947" />
+  <Blank UId="948" />
+  <Access Scope="LocalVariable" UId="949">
+    <Symbol UId="950">
+      <Component Name="RandInt_2" UId="951" />
+    </Symbol>
+  </Access>
+  <Blank UId="952" />
+  <Token Text="-" UId="953" />
+  <Blank UId="954" />
+  <Access Scope="LocalVariable" UId="955">
+    <Symbol UId="956">
+      <Component Name="i" UId="957" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="958" />
+  <NewLine UId="959" />
+  <Blank Num="4" UId="960" />
+  <Access Scope="GlobalVariable" UId="961">
+    <Symbol UId="962">
+      <Component Name="S7_Interface" UId="963">
+        <BooleanAttribute Name="HasQuotes" UId="964">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="965" />
+      <Component Name="FloatingPointValues" UId="966">
+        <Token Text="[" UId="967" />
+        <Access Scope="LocalVariable" UId="968">
+          <Symbol UId="969">
+            <Component Name="i" UId="970" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="971" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="972" />
+  <Token Text=":=" UId="973" />
+  <Blank UId="974" />
+  <Access Scope="LocalVariable" UId="975">
+    <Symbol UId="976">
+      <Component Name="RandReal_2" UId="977" />
+    </Symbol>
+  </Access>
+  <Blank UId="978" />
+  <Token Text="+" UId="979" />
+  <Blank UId="980" />
+  <Token Text="(" UId="981" />
+  <Access Scope="LocalVariable" UId="982">
+    <Symbol UId="983">
+      <Component Name="i" UId="984" />
+    </Symbol>
+  </Access>
+  <Blank UId="985" />
+  <Token Text="*" UId="986" />
+  <Blank UId="987" />
+  <Access Scope="LiteralConstant" UId="988">
+    <Constant UId="989">
+      <ConstantValue UId="991">5</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=")" UId="992" />
+  <Token Text=";" UId="993" />
+  <NewLine UId="994" />
+  <Blank Num="4" UId="995" />
+  <Access Scope="GlobalVariable" UId="996">
+    <Symbol UId="997">
+      <Component Name="S7_Interface" UId="998">
+        <BooleanAttribute Name="HasQuotes" UId="999">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1000" />
+      <Component Name="Booleans" UId="1001">
+        <Token Text="[" UId="1002" />
+        <Access Scope="LocalVariable" UId="1003">
+          <Symbol UId="1004">
+            <Component Name="i" UId="1005" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="1006" />
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank UId="1007" />
+  <Token Text=":=" UId="1008" />
+  <Blank UId="1009" />
+  <Access Scope="GlobalVariable" UId="1010">
+    <Symbol UId="1011">
+      <Component Name="OPC_Interface" UId="1012">
+        <BooleanAttribute Name="HasQuotes" UId="1013">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="1014" />
+      <Component Name="NumericalValues" UId="1015">
+        <Token Text="[" UId="1016" />
+        <Access Scope="LocalVariable" UId="1017">
+          <Symbol UId="1018">
+            <Component Name="i" UId="1019" />
+          </Symbol>
+        </Access>
+        <Token Text="]" UId="1020" />
+      </Component>
+      <Token Text="." UId="1021" />
+      <Token Text="%X6" UId="1022" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="1023" />
+  <NewLine UId="1024" />
+  <Token Text="END_FOR" UId="1025" />
+  <Token Text=";" UId="1026" />
+  <NewLine UId="1027" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>pl-PL</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="8" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>pl-PL</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="B" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="C" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="D" CompositionName="Items">
+            <AttributeList>
+              <Culture>pl-PL</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

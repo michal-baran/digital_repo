@@ -1,0 +1,94 @@
+﻿FUNCTION "LGF_RandomInt" : Int
+{ S7_Optimized_Access := 'TRUE' }
+   VAR_INPUT 
+      minValue : Int;
+      maxValue : Int;
+   END_VAR
+
+   VAR_OUTPUT 
+      error : Bool;
+      statusID : UInt;
+      status : Word;
+   END_VAR
+
+   VAR_TEMP 
+      tempTime {InstructionName := 'DTL'; LibVersion := '1.0'} : DTL;
+      tempTimeStatus : Int;
+      tempRandomValue : Int;
+      tempNormReal : Real;
+   END_VAR
+
+   VAR CONSTANT 
+      NO_ERROR : Word := 16#0000;
+      NO_CURRENT_JOBS : Word := 16#7000;
+      MAX_LESS_MIN : Word := 16#8200;
+      ERROR_IN_THIS_BLOCK : UInt := 1;
+      ERROR_RD_SYS_T : UInt := 2;
+      MIN_INT : DInt := -32768;
+      MAX_INT : DInt := 32767;
+   END_VAR
+
+
+BEGIN
+	//=============================================================================
+	// Siemens AG
+	// (c)Copyright 2017
+	//-----------------------------------------------------------------------------
+	// Library:       LGF (Library General Functions)
+	// Tested with:   CPU1212C DC/DC/DC FW:V4.2
+	// Engineering:   TIA Portal V13 SP1 Upd 4
+	// Restrictions:  -
+	// Requirements:  PLC (S7-1200 / S7-1500)
+	// Functionality: This function generates random numbers in defined limits
+	//                (Datatype Int)
+	//-----------------------------------------------------------------------------
+	// Change log table:
+	// Version  Date        In charge / Changes applied
+	// 01.00.00 19.08.2015  Siemens Industry Online Support
+	//                      First released version
+	// 01.00.01 02.01.2017  Siemens Industry Online Support
+	//                      Upgrade: TIA Portal V14 Update 1
+	//-----------------------------------------------------------------------------
+	//Status Codes:
+	// 16#7000:  No current jobs
+	// 16#0000:  Job finished; Note: There is no "Busy"-Status because the block
+	//           is finished within a single cycle
+	// 16#8200:  maxValue is samller then minValue 
+	//=============================================================================
+	
+	//Set "No current job" status
+	#error := false;
+	#statusID := #ERROR_IN_THIS_BLOCK;
+	#status := #NO_CURRENT_JOBS;
+	
+	//Check if the maximal Value is less than the minimal value
+	IF (#minValue > #maxValue) THEN
+	  #error := true;
+	  #statusID := #ERROR_IN_THIS_BLOCK;
+	  #status := #MAX_LESS_MIN;
+	  #LGF_RandomInt := 0;
+	  RETURN;
+	END_IF;
+	
+	//Read system time
+	#tempTimeStatus := RD_SYS_T(#tempTime);
+	
+	IF (#tempTimeStatus <> 0) THEN
+	  #error := true;
+	  #statusID := #ERROR_RD_SYS_T;
+	  #status := INT_TO_WORD(#tempTimeStatus);
+	  #LGF_RandomInt := 0;
+	  RETURN;
+	END_IF;
+	
+	//Callculate a random-start-value depending on the time
+	#tempRandomValue.%B1 := #tempTime.NANOSECOND.%B0;
+	#tempRandomValue.%B0 := #tempTime.NANOSECOND.%B1;
+	
+	//adapt the calculated random number to the given number span
+	#tempNormReal := NORM_X(MIN := #MIN_INT, VALUE := #tempRandomValue, MAX := #MAX_INT);
+	#LGF_RandomInt := SCALE_X(MIN := #minValue, VALUE := #tempNormReal, MAX := #maxValue);
+	
+	#status := #NO_ERROR;
+END_FUNCTION
+
