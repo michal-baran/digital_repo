@@ -15,7 +15,7 @@
   <Section Name="Temp" />
   <Section Name="Constant">
     <Member Name="CURRENT_VERSION" Datatype="Real">
-      <StartValue>0.2</StartValue>
+      <StartValue>0.1</StartValue>
     </Member>
   </Section>
 </Sections></Interface>
